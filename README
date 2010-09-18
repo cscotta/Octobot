@@ -1,0 +1,32 @@
+Introduction –
+
+Octobot is a task queue worker designed for reliability, ease of use, and 
+throughput.
+
+Octobot can listen on any number of queues, with any number of workers 
+processing messages from each. Each queue can be set at a custom priority to 
+ensure that more system resources are available for more important tasks. AMQP
+/ RabbitMQ, Redis, and Beanstalk are supported as backends, with an extensible 
+architecture to allow for additional backends to be added as needed.
+
+
+Architecture –
+
+Octobotʼs internal architecture is a shared-nothing, threadsafe design that 
+allows for any number of concurrent queues and tasks to be processed at once,
+limited only by system resources. Taking full advantage of parallel execution,
+Octobotʼs ability to spawn multiple workers on multiple queues can be used to
+more efficiently process tasks at a higher level of parallelism to offset the
+cost of IO-bound tasks on remote systems such as database reads, writes, and
+queue IO. Octobot also provides for connection pooling to datastores such as
+Cassandra and MongoDB, as well as outbound connection management for AMQP.
+
+As an isolated worker with support for multiple queues, Octobot instances can
+be geographically distributed across multiple datacenters and availability
+regions, assuring that so long as a queue is available, work will get done.
+
+Octobotʼs modular design also makes it easy to add system introspection and
+reporting tools, providing metrics such as job throughput per queue, total
+messages processed per second, and time per message, which can be passed onto
+an external system if additional time calculations are required to determine
+end-to-end messaging performance.

@@ -1,0 +1,62 @@
+<project>
+    <property environment="env" />
+    <path id="classpath">
+        <fileset dir="./lib" includes="**/*.jar" />
+    </path>
+    <path id="scalatest.classpath">
+        <pathelement location="test/build"/>
+        <pathelement location="lib/*.jar"/>
+        <pathelement location="test/lib/scalatest-1.2.jar"/>
+        <pathelement location="test/lib/scalatest-1.2.jar"/>
+        <pathelement location="test/lib/scala-library.jar"/>
+        <pathelement location="test/mocks/mocks.jar"/>
+        <pathelement location="jar/octobot.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="build" />
+        <delete dir="test/build" />
+        <delete dir="jar" />
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="build" />
+        <javac srcdir="src/" destdir="build" classpathref="classpath" debug="on" debuglevel="lines,vars,source">
+          <compilerarg value="-Xlint"/>
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="jar" />
+
+        <manifest file="MANIFEST.MF">
+            <attribute name="Built-By" value="${user.name}"/>
+            <attribute name="Main-Class" value="com.urbanairship.octobot.Octobot"/>
+        </manifest>
+
+        <jar destfile="jar/octobot.jar" basedir="build" includes="**/*.class" manifest="MANIFEST.MF">
+            <zipgroupfileset dir="lib" includes="*.jar"/>
+        </jar>
+    </target>
+    
+    <target name="compile_tests" depends="jar">
+      <mkdir dir="test/build" />
+      <exec executable="/bin/sh">
+        <arg value="-c" />
+        <arg value="scalac -cp jar/octobot.jar:test/lib/scalatest-1.2.jar:lib/json_simple-1.1.jar test/specs/*.scala -d test/build" />
+      </exec>
+    </target>
+
+    <target name="test" depends="compile_tests">
+        <mkdir dir="build" />
+
+        <taskdef name="scalatest" classname="org.scalatest.tools.ScalaTestAntTask">
+          <classpath refid="scalatest.classpath"/>
+        </taskdef>
+
+        <scalatest>
+          <suite classname="SettingsSpec" />
+          <suite classname="TaskSpec" />
+        </scalatest>
+    </target>
+</project>

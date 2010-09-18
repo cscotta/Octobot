@@ -1,0 +1,17 @@
+#!/bin/bash
+
+options[0]="configFile=`pwd`/example-config.yml"
+options[1]="log4j.configuration=`pwd`/log4j.properties"
+
+JVM_OPTS="-server"
+EXECUTABLE="-jar octobot.jar"
+CLASSPATH="-cp ../tasks.jar"
+
+for i in "${options[@]}"
+do
+  JVM_OPTS="$JVM_OPTS -D$i "
+done
+
+echo -e "Launching Octobot...\n"
+echo -e "Options specified: $JVM_OPTS\n"
+cd jar && java $JVM_OPTS $CLASSPATH $EXECUTABLE

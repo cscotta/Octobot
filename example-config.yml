@@ -1,0 +1,26 @@
+Octobot:
+  queues:
+    - { name: tacotruck,
+        protocol: AMQP,
+        host: localhost,
+        port: 5672,
+        vhost: /,
+        priority: 5,
+        workers: 1,
+        username: cilantro,
+        password: burrito
+      }
+
+  email_enabled: false
+  email_from: ohai@example.com
+  email_to: ohno@itsbroke.com
+  email_hostname: localhost
+  email_server: smtp.gmail.com
+  email_port: 465
+  email_ssl: true
+  email_auth: true
+  email_username: username
+  email_password: password
+
+  # startup_hook: org.example.taquito.StartupHook
+  # shutdown_hook: org.example.taquito.ShutdownHook

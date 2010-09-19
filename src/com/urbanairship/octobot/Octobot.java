@@ -50,6 +50,9 @@ public class Octobot {
             new Thread(MailQueue.get(), "Email Queue").start();
         }
 
+        logger.info("Launching Introspector...");
+        new Thread(new Introspector(), "Introspector").start();
+        
         logger.info("Launching Workers...");
         List<HashMap<String, Object>> queues = null;
         try {

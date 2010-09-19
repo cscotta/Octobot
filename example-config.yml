@@ -11,6 +11,8 @@ Octobot:
         password: burrito
       }
 
+  metrics_port: 1228
+
   email_enabled: false
   email_from: ohai@example.com
   email_to: ohno@itsbroke.com

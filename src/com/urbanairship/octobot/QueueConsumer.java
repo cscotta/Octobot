@@ -165,6 +165,7 @@ public boolean invokeTask(String rawMessage) {
     int retryCount = 0;
     long retryTimes = 0;
 
+    long startedAt = System.nanoTime();
     String errorMessage = null;
     Throwable lastException = null;
     boolean executedSuccessfully = false;
@@ -220,6 +221,9 @@ public boolean invokeTask(String rawMessage) {
         catch (InterruptedException e) { }
     }
 
+    long finishedAt = System.nanoTime();
+    Metrics.update(taskName, finishedAt - startedAt, executedSuccessfully, retryCount);
+    
     return executedSuccessfully;
 }
 

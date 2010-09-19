@@ -66,7 +66,7 @@ public class Settings {
     // Fetches a setting from YAML config and converts it to an integer.
     // No integer settings are autodetected, so that logic is not needed here.
     public static Integer getAsInt(String category, String key) {
-        Integer result = null;
+        Integer result = 0;
         Object value = null;
         HashMap configCategory = null;
 

@@ -52,6 +52,7 @@ public class Metrics {
             LinkedList<Long> timeList = executionTimes.get(task);
             if (timeList.size() == 10000) timeList.removeLast();
             timeList.addFirst(time);
+            executionTimes.put(task, timeList);
         }
     }
 

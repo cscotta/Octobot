@@ -10,8 +10,6 @@ import org.apache.log4j.Logger;
 public class Beanstalk {
 
     private static final Logger logger = Logger.getLogger("Beanstalk");
-    private static final String host = Settings.get("Beanstalk", "host");
-    private static final Integer port = Settings.getAsInt("Beanstalk", "port");
 
     public static ClientImpl getBeanstalkChannel(String host, Integer port, String tube) {
         int attempts = 0;
@@ -35,10 +33,6 @@ public class Beanstalk {
         }
 
         return client;
-    }
-
-    public static ClientImpl getBeanstalkChannel(String tube) {
-        return getBeanstalkChannel(host, port, tube);
     }
 
 }

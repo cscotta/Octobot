@@ -91,7 +91,8 @@ public class QueueConsumer implements Runnable {
             try { job = beanstalkClient.reserve(1); }
             catch (BeanstalkException e) {
                 logger.error("Beanstalk connection error.", e);
-                beanstalkClient = Beanstalk.getBeanstalkChannel(queue.queueName);
+                beanstalkClient = Beanstalk.getBeanstalkChannel(queue.host, 
+                        queue.port, queue.queueName);
                 continue;
             }
 
@@ -104,7 +105,8 @@ public class QueueConsumer implements Runnable {
                 try { beanstalkClient.delete(job.getJobId()); }
                 catch (BeanstalkException e) {
                     logger.error("Error sending message receipt.", e);
-                    beanstalkClient = Beanstalk.getBeanstalkChannel(queue.queueName);
+                    beanstalkClient = Beanstalk.getBeanstalkChannel(queue.host, 
+                        queue.port, queue.queueName);
                 }
             }
         }
@@ -130,27 +132,27 @@ public class QueueConsumer implements Runnable {
 
             @Override
             public void onPMessage(String string, String string1, String string2) {
-                logger.info("onPMessage Triggered");
+                logger.info("onPMessage Triggered - Not implemented.");
             }
 
             @Override
             public void onSubscribe(String string, int i) {
-                logger.info("onSubscribe called.");
+                logger.info("onSubscribe called - Not implemented.");
             }
 
             @Override
             public void onUnsubscribe(String string, int i) {
-                logger.info("onUnsubscribe Called");
+                logger.info("onUnsubscribe Called - Not implemented.");
             }
 
             @Override
             public void onPUnsubscribe(String string, int i) {
-                logger.info("onPUnsubscribe called.");
+                logger.info("onPUnsubscribe called - Not implemented.");
             }
 
             @Override
             public void onPSubscribe(String string, int i) {
-                logger.info("onPSubscribe Triggered");
+                logger.info("onPSubscribe Triggered - Not implemented.");
             }
 	    }, queue.queueName);
 

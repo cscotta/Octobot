@@ -81,7 +81,7 @@ public class QueueConsumer implements Runnable {
 
     // Attempt to register to receive messages from Beanstalk and invoke tasks.
     private void consumeFromBeanstalk() {
-        ClientImpl beanstalkClient = new ClientImpl();
+        ClientImpl beanstalkClient = new ClientImpl(queue.host, queue.port);
         beanstalkClient.watch(queue.queueName);
         beanstalkClient.useTube(queue.queueName);
         logger.info("Connected to Beanstalk; waiting for jobs.");
@@ -113,7 +113,7 @@ public class QueueConsumer implements Runnable {
 
     private void consumeFromRedis() {
         logger.info("Connecting to Redis...");
-        Jedis jedis = new Jedis(queue.host);
+        Jedis jedis = new Jedis(queue.host, queue.port);
         try {
             jedis.connect();
         } catch (IOException e) {

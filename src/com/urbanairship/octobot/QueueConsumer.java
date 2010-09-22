@@ -197,6 +197,10 @@ public boolean invokeTask(String rawMessage) {
             lastException = e;
             errorMessage = "Error: Task requested not found: " + taskName;
             logger.error(errorMessage);
+        } catch (NoClassDefFoundError e) {
+            lastException = e;
+            errorMessage = "Error: Task requested not found: " + taskName;
+            logger.error(errorMessage, e);
         } catch (NoSuchMethodException e) {
             lastException = e;
             errorMessage = "Error: Task requested does not have a static run method.";

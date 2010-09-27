@@ -205,7 +205,7 @@ public boolean invokeTask(String rawMessage) {
             lastException = e;
             errorMessage = "Error: Task requested does not have a static run method.";
             logger.error(errorMessage);
-        } catch (Exception e) {
+        } catch (Throwable e) {
             lastException = e;
             errorMessage = "An error occurred while running the task.";
             logger.error(errorMessage, e);

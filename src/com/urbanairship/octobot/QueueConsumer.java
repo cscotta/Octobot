@@ -237,7 +237,7 @@ public boolean invokeTask(String rawMessage) {
     // if the queue server is unavailable.
     private Channel getAMQPChannel(Queue queue) {
         int attempts = 0;
-        logger.info("Opening connection to AMQP / " + queue.queueName + "...");
+        logger.info("Opening connection to AMQP " + queue.vhost + " "  + queue.queueName + "...");
 
         while (true) {
             attempts++;

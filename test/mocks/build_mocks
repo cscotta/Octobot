@@ -1,0 +1,8 @@
+echo "Compiling mock tasks..."
+cd ../..
+javac -cp jar/octobot.jar test/mocks/com/urbanairship/octobot/tasks/*.java
+
+echo "Bottling mock tasks in mocks.jar..."
+cd test/mocks
+jar -cvf mocks.jar com/urbanairship/octobot/tasks/*.class
+echo "Done"

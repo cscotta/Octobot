@@ -1,14 +1,11 @@
 Octobot:
   queues:
     - { name: tacotruck,
-        protocol: AMQP,
+        protocol: beanstalk,
         host: localhost,
-        port: 5672,
-        vhost: /,
-        priority: 5,
+        port: 11300,
         workers: 1,
-        username: cilantro,
-        password: burrito
+        priority: 10
       }
 
   metrics_port: 1228

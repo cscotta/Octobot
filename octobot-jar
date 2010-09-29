@@ -5,7 +5,7 @@ options[1]="log4j.configuration=`pwd`/log4j.properties"
 
 JVM_OPTS="-server"
 EXECUTABLE="-jar octobot.jar"
-CLASSPATH="-cp ../tasks.jar"
+CLASSPATH="-cp ../tasks.jar:../lib/scala-library.jar"
 
 for i in "${options[@]}"
 do

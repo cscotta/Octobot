@@ -47,10 +47,16 @@ public class Settings {
     }
 
 
-    // Fetches a setting from YAML configuration.
-    // If unset in YAML, use the default value specified above.
+    /**
+     * Fetches a setting from YAML configuration.
+     * If unset in YAML, use the default value specified above.
+     *
+     * @param category Category to retrieve setting from (eg PosgreSQL)
+     * @param key      Actual setting to retrieve
+     * @return value of setting as a String or null
+     */
     public static String get(String category, String key) {
-        String result = "";
+        String result = null;
 
         try {
             HashMap configCategory = configuration.get(category);
@@ -64,17 +70,33 @@ public class Settings {
     }
 
     /**
+     * Fetches a setting from YAML configuration.
+     *
+     * @param category Category to retrieve setting from (eg PosgreSQL)
+     * @param key      Actual setting to retrieve
+     * @param defaultValue value to return if setting doesn't exist
+     * @return value of setting as a String or null
+     */
+    public static String get(String category, String key, String defaultValue) {
+        String result = get(category, key);
+
+        if (result == null) {
+            return defaultValue;
+        } else {
+            return result;
+        }
+    }
+
+    /**
      * Fetches a setting from YAML config and converts it to an integer. No
      * integer settings are autodetected, so that logic is not needed here.
      * 
-     * @param category
-     *            Category to retrieve setting from (eg PosgreSQL)
-     * @param key
-     *            Actual setting to retrieve
+     * @param category Category to retrieve setting from (eg PosgreSQL)
+     * @param key      Actual setting to retrieve
      * @return value of setting as an Integer or null
      */
     public static Integer getAsInt(String category, String key) {
-        Integer result = 0;
+        Integer result = null;
         Object value = null;
         HashMap configCategory = null;
 

@@ -16,5 +16,11 @@ class SettingsSpec extends Spec with MustMatchers {
       val startupHook = Settings.get("Octobot", "startup_hook")
       startupHook must be === "com.urbanairship.tasks.StartupHook"
     }
+    it("should return a default value for a setting") {
+      val nonexistentSetting = Settings.getAsInt("Octobot", "legs", 3)
+      nonexistentSetting must be === 3
+      val anotherBadSetting = Settings.get("Octobot", "name", "Charles")
+      anotherBadSetting must be === "Charles"
+    }
   }
 }

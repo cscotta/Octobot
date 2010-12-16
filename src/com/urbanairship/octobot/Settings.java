@@ -3,6 +3,7 @@ package com.urbanairship.octobot;
 import org.jvyaml.YAML;
 import java.util.HashMap;
 import java.io.FileReader;
+
 import org.apache.log4j.Logger;
 
 
@@ -62,9 +63,16 @@ public class Settings {
         return result;
     }
 
-
-    // Fetches a setting from YAML config and converts it to an integer.
-    // No integer settings are autodetected, so that logic is not needed here.
+    /**
+     * Fetches a setting from YAML config and converts it to an integer. No
+     * integer settings are autodetected, so that logic is not needed here.
+     * 
+     * @param category
+     *            Category to retrieve setting from (eg PosgreSQL)
+     * @param key
+     *            Actual setting to retrieve
+     * @return value of setting as an Integer or null
+     */
     public static Integer getAsInt(String category, String key) {
         Integer result = 0;
         Object value = null;
@@ -86,6 +94,24 @@ public class Settings {
         }
 
         return result;
+    }
+    
+    /** 
+     * Fetches a setting from YAML config and converts it to an integer.
+     * No integer settings are autodetected, so that logic is not needed here.
+     * 
+     * @param category Category to retrieve setting from (eg PosgreSQL)
+     * @param key Actual setting to retrieve
+     * @param defaultValue value to return if setting doesn't exist
+     * @return value of setting as an Integer or defaultValue
+     */
+    public static Integer getAsInt(String category, String key, int defaultValue) {
+        Integer result = getAsInt(category, key);
+        if (result == null) {
+            return defaultValue;
+        } else {
+            return result;
+        }
     }
 
     // Fetches a value from settings as an integer, with a default value.

@@ -91,7 +91,7 @@ public class QueueConsumer implements Runnable {
             try { job = beanstalkClient.reserve(1); }
             catch (BeanstalkException e) {
                 logger.error("Beanstalk connection error.", e);
-                beanstalkClient = Beanstalk.getBeanstalkChannel(queue.host, 
+                beanstalkClient = Beanstalk.getBeanstalkChannel(queue.host,
                         queue.port, queue.queueName);
                 continue;
             }
@@ -105,7 +105,7 @@ public class QueueConsumer implements Runnable {
                 try { beanstalkClient.delete(job.getJobId()); }
                 catch (BeanstalkException e) {
                     logger.error("Error sending message receipt.", e);
-                    beanstalkClient = Beanstalk.getBeanstalkChannel(queue.host, 
+                    beanstalkClient = Beanstalk.getBeanstalkChannel(queue.host,
                         queue.port, queue.queueName);
                 }
             }
@@ -210,7 +210,7 @@ public boolean invokeTask(String rawMessage) {
             errorMessage = "An error occurred while running the task.";
             logger.error(errorMessage, e);
         }
-        
+
         if (executedSuccessfully) break;
         else retryCount++;
     }
@@ -229,7 +229,7 @@ public boolean invokeTask(String rawMessage) {
 
     long finishedAt = System.nanoTime();
     Metrics.update(taskName, finishedAt - startedAt, executedSuccessfully, retryCount);
-    
+
     return executedSuccessfully;
 }
 

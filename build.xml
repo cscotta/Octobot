@@ -38,7 +38,7 @@
             <zipgroupfileset dir="lib" includes="*.jar"/>
         </jar>
     </target>
-    
+
     <target name="compile_tests" depends="jar">
       <mkdir dir="test/build" />
       <exec executable="/bin/sh">

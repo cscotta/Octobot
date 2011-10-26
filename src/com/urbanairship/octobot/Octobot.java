@@ -52,7 +52,7 @@ public class Octobot {
 
         logger.info("Launching Introspector...");
         new Thread(new Introspector(), "Introspector").start();
-        
+
         logger.info("Launching Workers...");
         List<HashMap<String, Object>> queues = null;
         try {

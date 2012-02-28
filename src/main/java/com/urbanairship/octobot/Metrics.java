@@ -24,15 +24,15 @@ public class Metrics {
 
     // Update the list of execution times, keeping the last 10,000 per task.
     private static void updateExecutionTimes(String task, long time) {
-        MetricName timerName = new MetricName("Octobot", "Metrics", task + "Timer");
-        Timer timer = registry.newTimer(timerName, TimeUnit.MILLISECONDS, TimeUnit.SECONDS);
-        timer.update(time, TimeUnit.MILLISECONDS);
+        MetricName timerName = new MetricName("Octobot", "Metrics", task + ":Timer");
+        Timer timer = registry.newTimer(timerName, TimeUnit.NANOSECONDS, TimeUnit.MILLISECONDS);
+        timer.update(time, TimeUnit.NANOSECONDS);
     }
 
 
     // Update the number of times this task has been retried.
     private static void updateTaskRetries(String task, int retries) {
-        MetricName counterRetriesName = new MetricName("Octobot", "Metrics", task + "Retries");
+        MetricName counterRetriesName = new MetricName("Octobot", "Metrics", task + ":Retries");
         Counter counterRetries = registry.newCounter(counterRetriesName);
         counterRetries.inc();
     }
@@ -41,11 +41,11 @@ public class Metrics {
     // Update the number of times this task has succeeded or failed.
     private static void updateTaskResults(String task, boolean status) {
         if (status == true) {
-            MetricName counterSuccessName = new MetricName("Octobot", "Metrics", task + "Success");
+            MetricName counterSuccessName = new MetricName("Octobot", "Metrics", task + ":Success");
             Counter counterSuccess = registry.newCounter(counterSuccessName);
             counterSuccess.inc();
         } else {
-            MetricName counterFailureName = new MetricName("Octobot", "Metrics", task + "Failure");
+            MetricName counterFailureName = new MetricName("Octobot", "Metrics", task + ":Failure");
             Counter counterFailure = registry.newCounter(counterFailureName);
             counterFailure.inc();
         }

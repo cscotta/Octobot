@@ -1,7 +1,1 @@
-*.class
-jar
-jar/*
-build
-build/*
-nbproject
-MANIFEST.MF
+target

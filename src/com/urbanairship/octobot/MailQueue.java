@@ -62,7 +62,7 @@ public class MailQueue implements Runnable {
     // As this thread runs, it consumes messages from the internal queue and
     // delivers each to the recipients configured in the YML file.
     public void run() {
-        
+
         if (!validSettings()) {
             logger.error("Email settings invalid; check your configuration.");
             return;

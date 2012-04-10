@@ -8,7 +8,7 @@ public class Metrics {
 
     // Keep track of all tasks we've seen executed.
     protected static final ArrayList<String> instrumentedTasks = new ArrayList<String>();
-    
+
     // Keep track of average task throughput (last 10k runs per task).
     protected static final HashMap<String, LinkedList<Long>> executionTimes =
         new HashMap<String, LinkedList<Long>>();
@@ -20,7 +20,7 @@ public class Metrics {
     // Keep track of total failures by task.
     protected static final HashMap<String, Integer> taskFailures =
         new HashMap<String, Integer>();
-    
+
     // Keep track of total retries by task.
     protected static final HashMap<String, Integer> taskRetries =
         new HashMap<String, Integer>();
@@ -34,7 +34,7 @@ public class Metrics {
 
         synchronized(metricsLock) {
             if (!instrumentedTasks.contains(task)) instrumentedTasks.add(task);
-            
+
             updateExecutionTimes(task, time);
             updateTaskRetries(task, retries);
             updateTaskResults(task, status);
@@ -67,7 +67,7 @@ public class Metrics {
                 retriesForTask += retries;
                 taskRetries.put(task, retriesForTask);
             }
-        }   
+        }
     }
 
 

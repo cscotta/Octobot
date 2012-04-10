@@ -43,7 +43,7 @@ public class Introspector implements Runnable {
         }
 
         logger.info("Introspector launched on port: " + port);
-        
+
         while (true) {
             try {
                 Socket socket = server.accept();
@@ -64,7 +64,7 @@ public class Introspector implements Runnable {
     @SuppressWarnings("unchecked")
     public String introspect() {
         HashMap<String, Object> metrics = new HashMap<String, Object>();
-        
+
         // Make a quick copy of our runtime metrics data.
         ArrayList<String> instrumentedTasks;
         HashMap<String, LinkedList<Long>> executionTimes;
@@ -85,21 +85,21 @@ public class Introspector implements Runnable {
             task.put("failures", taskFailures.get(taskName));
             task.put("retries", taskRetries.get(taskName));
             task.put("average_time", average(executionTimes.get(taskName)));
-            
+
             metrics.put("task_" + taskName, task);
         }
-        
+
         metrics.put("tasks_instrumented", instrumentedTasks.size());
         metrics.put("alive_since", mx.getUptime() / (new Long("1000")));
-        
+
         return JSONValue.toJSONString(metrics);
     }
 
-    
+
     // Calculate and return the mean execution time of our sample.
     private float average(LinkedList<Long> times) {
         if (times == null) return 0;
-        
+
         long timeSum = 0;
         for (long time : times) timeSum += time;
 

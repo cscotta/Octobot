@@ -11,7 +11,7 @@ public class TaskExecutor {
             new HashMap<String, Method>();
 
     @SuppressWarnings("unchecked")
-    public static void execute(String taskName, JSONObject message) 
+    public static void execute(String taskName, JSONObject message)
             throws ClassNotFoundException,
                    NoSuchMethodException,
                    IllegalAccessException,

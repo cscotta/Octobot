@@ -58,9 +58,9 @@
       <version>2.8.4</version>
     </dependency>
     <dependency>
-  	  <groupId>log4j</groupId>
-	  	<artifactId>log4j</artifactId>
-		  <version>1.2.16</version>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.16</version>
     </dependency>
     <dependency>
       <groupId>redis.clients</groupId>
@@ -68,9 +68,9 @@
       <version>2.1.0</version>
     </dependency>
     <dependency>
-  	  <groupId>com.surftools</groupId>
-	  	<artifactId>BeanstalkClient</artifactId>
-		  <version>1.4.6-SNAPSHOT</version>
+      <groupId>com.surftools</groupId>
+      <artifactId>BeanstalkClient</artifactId>
+      <version>1.4.6-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.googlecode.json-simple</groupId>
@@ -209,12 +209,12 @@
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
-					<archive>
-						<manifest>
+          <archive>
+            <manifest>
               <addClasspath>true</addClasspath>
-							<mainClass>com.urbanairship.octobot.Octobot</mainClass>
-						</manifest>
-					</archive>
+              <mainClass>com.urbanairship.octobot.Octobot</mainClass>
+            </manifest>
+          </archive>
         </configuration>
         <executions>
           <execution>
@@ -236,4 +236,3 @@
     </extensions>
   </build>
 </project>
-

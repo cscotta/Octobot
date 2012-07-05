@@ -8,7 +8,11 @@ Octobot:
         priority: 5,
         workers: 1,
         username: cilantro,
-        password: burrito
+        password: burrito,
+        heartbeat: 2,
+        arguments: {
+          x-ha-policy: all
+        }
       }
 
   metrics_port: 1228

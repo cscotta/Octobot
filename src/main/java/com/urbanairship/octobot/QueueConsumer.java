@@ -248,7 +248,7 @@ public boolean invokeTask(String rawMessage) {
                 channel = connection.createChannel();
                 consumer = new QueueingConsumer(channel);
                 channel.exchangeDeclare(queue.queueName, "direct", true);
-                channel.queueDeclare(queue.queueName, true, false, false, null);
+                channel.queueDeclare(queue.queueName, true, false, false, queue.arguments);
                 channel.queueBind(queue.queueName, queue.queueName, queue.queueName);
                 channel.basicConsume(queue.queueName, false, consumer);
                 logger.info("Connected to RabbitMQ");

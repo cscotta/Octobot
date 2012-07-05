@@ -17,20 +17,20 @@ public class Queue {
 
     public Queue(String queueType, String queueName, String host, Integer port,
         String username, String password) {
-            this.queueType = queueType.toLowerCase();
-            this.queueName = queueName;
-            this.host = host;
-            this.port = port;
-            this.username = username;
-            this.password = password;
-            this.vhost = "/";
+        this.queueType = queueType.toLowerCase();
+        this.queueName = queueName;
+        this.host = host;
+        this.port = port;
+        this.username = username;
+        this.password = password;
+        this.vhost = "/";
     }
 
     public Queue(String queueType, String queueName, String host, Integer port) {
-            this.queueType = queueType.toLowerCase();
-            this.queueName = queueName;
-            this.host = host;
-            this.port = port;
+        this.queueType = queueType.toLowerCase();
+        this.queueName = queueName;
+        this.host = host;
+        this.port = port;
     }
 
     public Queue(HashMap<String, Object> config) {
@@ -57,4 +57,3 @@ public class Queue {
     }
 
 }
-

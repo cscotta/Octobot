@@ -12,23 +12,25 @@ public class Queue {
     public String username;
     public String password;
     public String vhost;
+    public Integer heartbeat;
+    public HashMap<String, Object> arguments;
 
     public Queue(String queueType, String queueName, String host, Integer port,
         String username, String password) {
-            this.queueType = queueType.toLowerCase();
-            this.queueName = queueName;
-            this.host = host;
-            this.port = port;
-            this.username = username;
-            this.password = password;
-            this.vhost = "/";
+        this.queueType = queueType.toLowerCase();
+        this.queueName = queueName;
+        this.host = host;
+        this.port = port;
+        this.username = username;
+        this.password = password;
+        this.vhost = "/";
     }
 
     public Queue(String queueType, String queueName, String host, Integer port) {
-            this.queueType = queueType.toLowerCase();
-            this.queueName = queueName;
-            this.host = host;
-            this.port = port;
+        this.queueType = queueType.toLowerCase();
+        this.queueName = queueName;
+        this.host = host;
+        this.port = port;
     }
 
     public Queue(HashMap<String, Object> config) {
@@ -41,6 +43,10 @@ public class Queue {
 
         if (config.get("port") != null)
             this.port = Integer.parseInt(((Long) config.get("port")).toString());
+        if (config.get("heartbeat") != null)
+            this.heartbeat = Integer.parseInt(((Long)config.get("heartbeat")).toString());
+        if (config.get("arguments") != null)
+            this.arguments = (HashMap<String, Object>)config.get("arguments");
     }
 
 
@@ -51,4 +57,3 @@ public class Queue {
     }
 
 }
-

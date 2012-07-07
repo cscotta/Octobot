@@ -5,14 +5,11 @@ import com.yammer.metrics.core.MetricName;
 import com.yammer.metrics.core.MetricsRegistry;
 import com.yammer.metrics.core.Timer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 public class Metrics {
 
-    protected static final MetricsRegistry registry = new MetricsRegistry();
+    protected static final MetricsRegistry registry = com.yammer.metrics.Metrics.defaultRegistry();
 
     // Updates internal metrics following task execution.
     public static void update(String task, long time, boolean status, int retries) {
@@ -50,6 +47,5 @@ public class Metrics {
             counterFailure.inc();
         }
     }
-    
-}
 
+}

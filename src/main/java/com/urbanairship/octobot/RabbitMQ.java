@@ -22,6 +22,9 @@ public class RabbitMQ {
         factory.setUsername(queue.username);
         factory.setPassword(queue.password);
         factory.setVirtualHost(queue.vhost);
+        if (queue.heartbeat != null) {
+            factory.setRequestedHeartbeat(queue.heartbeat);
+        }
     }
 
     // Returns a new connection to an AMQP queue.
@@ -50,4 +53,3 @@ public class RabbitMQ {
         return taskChannel;
     }
 }
-

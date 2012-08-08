@@ -140,8 +140,10 @@ public class Settings {
     public static Integer getIntFromYML(Object obj, Integer defaultValue) {
         int result = defaultValue;
 
-        try { result = Integer.parseInt(obj.toString()); }
-        catch (NumberFormatException e) { logger.info("Error reading settings."); }
+        if (obj != null) {
+            try { result = Integer.parseInt(obj.toString()); }
+            catch (NumberFormatException e) { logger.info("Error reading settings."); }
+        }
 
         return result;
     }

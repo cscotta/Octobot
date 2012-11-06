@@ -12,6 +12,8 @@ public class Queue {
     public String username;
     public String password;
     public String vhost;
+    public Integer heartbeat;
+    public HashMap<String, Object> arguments;
 
     public Queue(String queueType, String queueName, String host, Integer port,
         String username, String password) {
@@ -41,6 +43,10 @@ public class Queue {
 
         if (config.get("port") != null)
             this.port = Integer.parseInt(((Long) config.get("port")).toString());
+        if (config.get("heartbeat") != null)
+            this.heartbeat = Integer.parseInt(((Long) config.get("heartbeat")).toString());
+        if (config.get("arguments") != null)
+            this.arguments = (HashMap<String, Object>)config.get("arguments");
     }
 
 

@@ -72,9 +72,17 @@ public class QueueConsumer implements Runnable {
             // If we've got a message, fetch the body and invoke the task.
             // Then, send an acknowledgement back to RabbitMQ that we got it.
             if (task != null && task.getBody() != null) {
-                invokeTask(new String(task.getBody()));
-                try { channel.basicAck(task.getEnvelope().getDeliveryTag(), false); }
-                catch (IOException e) { logger.error("Error ack'ing message.", e); }
+                boolean result = invokeTask(new String(task.getBody()));
+
+                if (result) {
+                    try { channel.basicAck(task.getEnvelope().getDeliveryTag(), false); }
+                    catch (IOException e) { logger.error("Error ack'ing message.", e); }
+                }
+                else {
+                    // reject the message and requeue
+                    try { channel.basicReject(task.getEnvelope().getDeliveryTag(), true); }
+                    catch (IOException e) { logger.error("Error reject'ing message.", e); }
+                }
             }
         }
     }

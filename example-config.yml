@@ -8,7 +8,8 @@ Octobot:
         priority: 5,
         workers: 1,
         username: cilantro,
-        password: burrito
+        password: burrito,
+        heartbeat: 10
       }
 
   metrics_port: 1228

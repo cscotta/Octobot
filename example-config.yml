@@ -9,7 +9,10 @@ Octobot:
         workers: 1,
         username: cilantro,
         password: burrito,
-        heartbeat: 10
+        heartbeat: 10,
+        arguments: {
+          x-ha-policy: all
+        }
       }
 
   metrics_port: 1228
